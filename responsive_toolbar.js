@@ -7,7 +7,7 @@ function createInfoBox(){
         box            : document.createElement("div"),
     }
 
-	Base.boxWrapper.id = "responsive-toolbar";
+	Base.boxWrapper.id = "responsive-toolbar-wrapper";
 
     Base.boxWrapper.style.width         = "100%";
     Base.boxWrapper.style.top           = "0";
@@ -18,14 +18,16 @@ function createInfoBox(){
     Base.boxWrapper.style.borderBottom  = "1px solid black";
     Base.boxWrapper.style.overflow      = "hidden";
 
+	Base.box.id = "responsive-toolbar";    
     
-    Base.box.style.height      = "20px";
+	Base.box.style.height      = "20px";
     Base.box.style.lineHeight  = "20px";
     Base.box.style.color       = "#234b74";
     Base.box.style.fontFamily  = "sans-serif";
     Base.box.style.fontSize    = "12px";
-    Base.box.style.paddingLeft = "10px";
     Base.box.style.fontWeight  = "bold";
+    Base.box.style.textShadow  = "0px 1px 2px #acd5ff";
+    Base.box.style.textAlign   = "center";
 }
 
 function deviceDescription(x){
@@ -44,7 +46,7 @@ function deviceDescription(x){
 }   
 
 function removeToolBar() {
-	element = document.getElementById( "responsive-toolbar" );
+	element = document.getElementById( "responsive-toolbar-wrapper" );
 	element.parentNode.removeChild( element );
 	return false;	
 }
@@ -53,7 +55,7 @@ function infoBoxContent() {
     Base.box.innerHTML =  "";  
     Base.box.innerHTML += Base.width + " x " + Base.height + "  ";
     Base.box.innerHTML += deviceDescription(Base);
-    Base.box.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\" onclick=\"removeToolBar()\x3B\" >[remove]</a>";         
+    Base.box.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
 }
 
 function insertInfoBox() {
