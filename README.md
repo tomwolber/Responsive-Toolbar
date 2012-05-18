@@ -9,7 +9,7 @@ This is in VERY EARLY STAGES of development.
 
 http://tommywolber.com/dev/Responsive-Toolbar/demo.html
 
-**Usagae:**
+**Usage:**
 
 Just add the JS file to your HTML.
 
