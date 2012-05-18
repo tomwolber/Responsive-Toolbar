@@ -26,7 +26,7 @@ function createInfoBox(){
     Base.box.style.fontFamily  = "sans-serif";
     Base.box.style.fontSize    = "12px";
     Base.box.style.fontWeight  = "bold";
-    Base.box.style.textShadow  = "0px 1px 2px #acd5ff";
+    Base.box.style.textShadow  = "0px 1px 1px #acd5ff";
     Base.box.style.textAlign   = "center";
 }
 
@@ -55,7 +55,7 @@ function infoBoxContent() {
     Base.box.innerHTML =  "";  
     Base.box.innerHTML += Base.width + " x " + Base.height + "  ";
     Base.box.innerHTML += deviceDescription(Base);
-    Base.box.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
+    Base.box.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\x3Btext-shadow:none\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
 }
 
 function insertInfoBox() {
