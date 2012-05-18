@@ -31,8 +31,10 @@ function deviceDescription(x){
 		return "Landscape phone and smaller";
 	} else if(width > 480 && width <= 767) {
 		return "Landscape phone to portrait tablet";
-	} else if(width > 767 && width < 1199) {
+	} else if(width > 767 && width < 979) {
 		return "Portrait tablet to landscape tablet, and desktop";		
+	} else if(width > 980 && width < 1199) {
+		return "Desktop";		
 	} else {
 		return "Large desktop";
 	}
