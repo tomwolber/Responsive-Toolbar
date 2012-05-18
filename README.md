@@ -14,5 +14,4 @@ http://tommywolber.com/dev/Responsive-Toolbar/demo.html
 
 Just add the JS file to your HTML.
 
-![Demo Pic](http://tommywolber.com/dev/Responsive-Toolbar/demo01.jpg)
 
