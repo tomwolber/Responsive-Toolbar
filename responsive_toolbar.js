@@ -7,6 +7,8 @@ function createInfoBox(){
         infoTag : document.createElement("div"),
     }
 
+	DeviceSizeBase.infoTagWrapper.id = "responsive-toolbar";
+	
     DeviceSizeBase.infoTagWrapper.style.height = "20px";
     DeviceSizeBase.infoTagWrapper.style.background = "#4f8ece";
     DeviceSizeBase.infoTagWrapper.style.borderBottom = "1px solid black";
@@ -17,12 +19,12 @@ function createInfoBox(){
     DeviceSizeBase.infoTagWrapper.style.position = "absolute";  
     
     DeviceSizeBase.infoTag.style.height = "20px";
+    DeviceSizeBase.infoTag.style.lineHeight = "20px";
     DeviceSizeBase.infoTag.style.color = "#234b74";
     DeviceSizeBase.infoTag.style.fontFamily = "sans-serif";
     DeviceSizeBase.infoTag.style.fontSize = "12px";
     DeviceSizeBase.infoTag.style.paddingLeft = "10px";
     DeviceSizeBase.infoTag.style.fontWeight = "bold";
-    DeviceSizeBase.infoTag.style.borderLeft = "10px solid #a31212";
 }
 
 function deviceDescription(x){
@@ -40,10 +42,16 @@ function deviceDescription(x){
     }
 }   
 
+function removeToolBar() {
+	element = document.getElementById("responsive-toolbar");
+	element.parentNode.removeChild(element);	
+}
+
 function infoBoxContent() {
     DeviceSizeBase.infoTag.innerHTML = "";  
     DeviceSizeBase.infoTag.innerHTML += DeviceSizeBase.width + " x " + DeviceSizeBase.height + "  ";
-    DeviceSizeBase.infoTag.innerHTML += deviceDescription(DeviceSizeBase);      
+    DeviceSizeBase.infoTag.innerHTML += deviceDescription(DeviceSizeBase);
+    DeviceSizeBase.infoTag.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\" onclick=\"removeToolBar()\x3B\" >[remove]</a>";         
 }
 
 function insertInfoBox() {
