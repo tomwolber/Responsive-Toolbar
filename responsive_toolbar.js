@@ -1,41 +1,42 @@
 function createInfoBox(){
-    this.DeviceSizeBase = {
-        width   : window.innerWidth,
-        height  : window.innerHeight,
-        bodyTag : document.getElementsByTagName("body")[0],
-        infoTagWrapper : document.createElement("div"),
-        infoTag : document.createElement("div"),
+    this.Base = {
+        width          : window.innerWidth,
+        height         : window.innerHeight,
+        bodyTag        : document.getElementsByTagName("body")[0],
+        boxWrapper     : document.createElement("div"),
+        box            : document.createElement("div"),
     }
 
-	DeviceSizeBase.infoTagWrapper.id = "responsive-toolbar";
-	
-    DeviceSizeBase.infoTagWrapper.style.height = "20px";
-    DeviceSizeBase.infoTagWrapper.style.background = "#4f8ece";
-    DeviceSizeBase.infoTagWrapper.style.borderBottom = "1px solid black";
-    DeviceSizeBase.infoTagWrapper.style.overflow = "hidden";
-    DeviceSizeBase.infoTagWrapper.style.width = "100%";
-    DeviceSizeBase.infoTagWrapper.style.top = "0";
-    DeviceSizeBase.infoTagWrapper.style.left = "0";
-    DeviceSizeBase.infoTagWrapper.style.position = "absolute";  
+	Base.boxWrapper.id = "responsive-toolbar";
+
+    Base.boxWrapper.style.width         = "100%";
+    Base.boxWrapper.style.top           = "0";
+    Base.boxWrapper.style.left          = "0";
+    Base.boxWrapper.style.position      = "absolute";	
+    Base.boxWrapper.style.height        = "20px";
+    Base.boxWrapper.style.background    = "#4f8ece";
+    Base.boxWrapper.style.borderBottom  = "1px solid black";
+    Base.boxWrapper.style.overflow      = "hidden";
+
     
-    DeviceSizeBase.infoTag.style.height = "20px";
-    DeviceSizeBase.infoTag.style.lineHeight = "20px";
-    DeviceSizeBase.infoTag.style.color = "#234b74";
-    DeviceSizeBase.infoTag.style.fontFamily = "sans-serif";
-    DeviceSizeBase.infoTag.style.fontSize = "12px";
-    DeviceSizeBase.infoTag.style.paddingLeft = "10px";
-    DeviceSizeBase.infoTag.style.fontWeight = "bold";
+    Base.box.style.height      = "20px";
+    Base.box.style.lineHeight  = "20px";
+    Base.box.style.color       = "#234b74";
+    Base.box.style.fontFamily  = "sans-serif";
+    Base.box.style.fontSize    = "12px";
+    Base.box.style.paddingLeft = "10px";
+    Base.box.style.fontWeight  = "bold";
 }
 
 function deviceDescription(x){
     var width = x.width;
-    if(width > 0 && width <= 480) {
+    if ( width > 0 && width <= 480 ) {
         return "Landscape phone and smaller";
-    } else if(width > 480 && width <= 767) {
+    } else if ( width > 480 && width <= 767 ) {
         return "Landscape phone to portrait tablet";
-    } else if(width > 767 && width < 979) {
+    } else if ( width > 767 && width < 979 ) {
         return "Portrait tablet to landscape tablet, and desktop";      
-    } else if(width > 980 && width < 1199) {
+    } else if ( width > 980 && width < 1199 ) {
         return "Desktop";       
     } else {
         return "Large desktop";
@@ -43,25 +44,26 @@ function deviceDescription(x){
 }   
 
 function removeToolBar() {
-	element = document.getElementById("responsive-toolbar");
-	element.parentNode.removeChild(element);	
+	element = document.getElementById( "responsive-toolbar" );
+	element.parentNode.removeChild( element );
+	return false;	
 }
 
 function infoBoxContent() {
-    DeviceSizeBase.infoTag.innerHTML = "";  
-    DeviceSizeBase.infoTag.innerHTML += DeviceSizeBase.width + " x " + DeviceSizeBase.height + "  ";
-    DeviceSizeBase.infoTag.innerHTML += deviceDescription(DeviceSizeBase);
-    DeviceSizeBase.infoTag.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\" onclick=\"removeToolBar()\x3B\" >[remove]</a>";         
+    Base.box.innerHTML =  "";  
+    Base.box.innerHTML += Base.width + " x " + Base.height + "  ";
+    Base.box.innerHTML += deviceDescription(Base);
+    Base.box.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\" onclick=\"removeToolBar()\x3B\" >[remove]</a>";         
 }
 
 function insertInfoBox() {
-    DeviceSizeBase.bodyTag.insertBefore(DeviceSizeBase.infoTagWrapper, DeviceSizeBase.bodyTag.firstChild);
-    DeviceSizeBase.infoTagWrapper.appendChild(DeviceSizeBase.infoTag);
+    Base.bodyTag.insertBefore( Base.boxWrapper, Base.bodyTag.firstChild );
+    Base.boxWrapper.appendChild( Base.box );
 }
 
 function buildInfoBox() {
     createInfoBox();
-    deviceDescription(DeviceSizeBase);
+    deviceDescription( Base );
     infoBoxContent();
     insertInfoBox();        
 }
@@ -69,8 +71,7 @@ function buildInfoBox() {
 buildInfoBox();
 
 window.onresize = function(){
-    DeviceSizeBase.width = window.innerWidth;
-    DeviceSizeBase.height = window.innerHeight;
+    Base.width = window.innerWidth;
+    Base.height = window.innerHeight;
     infoBoxContent();
-    console.log(deviceDescription(DeviceSizeBase));
 }
