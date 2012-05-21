@@ -1,33 +1,39 @@
-function createInfoBox(){
-    this.Base = {
-        width          : window.innerWidth,
-        height         : window.innerHeight,
-        bodyTag        : document.getElementsByTagName("body")[0],
-        boxWrapper     : document.createElement("div"),
-        box            : document.createElement("div"),
-    }
-
-	Base.boxWrapper.id = "responsive-toolbar-wrapper";
-
-    Base.boxWrapper.style.width         = "100%";
-    Base.boxWrapper.style.top           = "0";
-    Base.boxWrapper.style.left          = "0";
-    Base.boxWrapper.style.position      = "absolute";	
-    Base.boxWrapper.style.height        = "20px";
-    Base.boxWrapper.style.background    = "#4f8ece";
-    Base.boxWrapper.style.borderBottom  = "1px solid black";
-    Base.boxWrapper.style.overflow      = "hidden";
-
-	Base.box.id = "responsive-toolbar";    
+function createToolbar(){
+    // Get the <body> tag, we are going to add the toolbar as it's first
+    // child element. 
+    this.bodyTag = document.getElementsByTagName("body")[0];
     
-	Base.box.style.height      = "20px";
-    Base.box.style.lineHeight  = "20px";
-    Base.box.style.color       = "#234b74";
-    Base.box.style.fontFamily  = "sans-serif";
-    Base.box.style.fontSize    = "12px";
-    Base.box.style.fontWeight  = "bold";
-    Base.box.style.textShadow  = "0px 1px 1px #acd5ff";
-    Base.box.style.textAlign   = "center";
+    // Toolbar object. Tb is short for toolbar
+    this.Tb = {
+        width    : window.innerWidth,
+        height   : window.innerHeight,
+        innerDiv : document.createElement("div"),
+        outerDiv : document.createElement("div")
+    }
+    
+    // Toolbar has 2 divs, here we give them CSS IDs.	
+	Tb.innerDiv.id = "responsive-toolbar";    
+    Tb.outerDiv.id = "responsive-toolbar-wrapper";
+
+    // Inline CSS styling for outerDiv (responsive-toolbar-wrapper)
+    Tb.outerDiv.style.width         = "100%";
+    Tb.outerDiv.style.top           = "0";
+    Tb.outerDiv.style.left          = "0";
+    Tb.outerDiv.style.position      = "fixed";	
+    Tb.outerDiv.style.height        = "20px";
+    Tb.outerDiv.style.background    = "#4f8ece";
+    Tb.outerDiv.style.borderBottom  = "1px solid black";
+    Tb.outerDiv.style.overflow      = "hidden";
+
+    // Inline CSS styling for innerDiv (responsive-toolbar)
+	Tb.innerDiv.style.height      = "20px";
+    Tb.innerDiv.style.lineHeight  = "20px";
+    Tb.innerDiv.style.color       = "#234b74";
+    Tb.innerDiv.style.fontFamily  = "sans-serif";
+    Tb.innerDiv.style.fontSize    = "12px";
+    Tb.innerDiv.style.fontWeight  = "bold";
+    Tb.innerDiv.style.textShadow  = "0px 1px 1px #acd5ff";
+    Tb.innerDiv.style.textAlign   = "center";
 }
 
 function deviceDescription(x){
@@ -46,34 +52,34 @@ function deviceDescription(x){
 }   
 
 function removeToolBar() {
-	element = document.getElementById( "responsive-toolbar-wrapper" );
+	element = document.getElementById( "responsive-toolbar-Wrap" );
 	element.parentNode.removeChild( element );
 	return false;	
 }
 
-function infoBoxContent() {
-    Base.box.innerHTML =  "";  
-    Base.box.innerHTML += Base.width + " x " + Base.height + "  ";
-    Base.box.innerHTML += deviceDescription(Base);
-    Base.box.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\x3Btext-shadow:none\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
+function toolbarContent() {
+    Tb.innerDiv.innerHTML =  "";  
+    Tb.innerDiv.innerHTML += Tb.width + " x " + Tb.height + "  ";
+    Tb.innerDiv.innerHTML += deviceDescription(Tb);
+    Tb.innerDiv.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\x3Btext-shadow:none\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
 }
 
-function insertInfoBox() {
-    Base.bodyTag.insertBefore( Base.boxWrapper, Base.bodyTag.firstChild );
-    Base.boxWrapper.appendChild( Base.box );
+function insertToolbar() {
+    bodyTag.insertBefore( Tb.outerDiv, bodyTag.firstChild );
+    Tb.outerDiv.appendChild( Tb.innerDiv );
 }
 
 function buildInfoBox() {
-    createInfoBox();
-    deviceDescription( Base );
-    infoBoxContent();
-    insertInfoBox();        
+    createToolbar();
+    deviceDescription( Tb );
+    toolbarContent();
+    insertToolbar();        
 }
 
 buildInfoBox();
 
 window.onresize = function(){
-    Base.width = window.innerWidth;
-    Base.height = window.innerHeight;
-    infoBoxContent();
+    Tb.width = window.innerWidth;
+    Tb.height = window.innerHeight;
+    toolbarContent();
 }
