@@ -26,7 +26,7 @@ function createToolbar(){
     Tb.outerDiv.style.overflow      = "hidden";
 
     // Inline CSS styling for innerDiv (responsive-toolbar)
-	Tb.innerDiv.style.height      = "20px";
+    Tb.innerDiv.style.height      = "20px";
     Tb.innerDiv.style.lineHeight  = "20px";
     Tb.innerDiv.style.color       = "#234b74";
     Tb.innerDiv.style.fontFamily  = "sans-serif";
@@ -52,7 +52,7 @@ function deviceDescription(x){
 }   
 
 function removeToolBar() {
-	element = document.getElementById( "responsive-toolbar-Wrap" );
+	element = document.getElementById( "responsive-toolbar-wrap" );
 	element.parentNode.removeChild( element );
 	return false;	
 }
