@@ -1,43 +1,52 @@
-function createToolbar(){
-    // Get the <body> tag, we are going to add the toolbar as it's first
-    // child element. 
-    this.bodyTag = document.getElementsByTagName("body")[0];
+// Empty namespace
+var ResponsiveToolbar = {};
+
+ResponsiveToolbar.getBodyTag = function(){
+    // Get the <body> tag, we are going to add the toolbar 
+    // as it's first child element. 
+   
+    return document.getElementsByTagName("body")[0];
+}
+
+ResponsiveToolbar.createToolbar = function(){
     
     // Toolbar object. Tb is short for toolbar
-    this.Tb = {
+    var Tb = {
         width    : window.innerWidth,
         height   : window.innerHeight,
         innerDiv : document.createElement("div"),
         outerDiv : document.createElement("div")
     }
     
-    // Toolbar has 2 divs, here we give them CSS IDs.	
-	Tb.innerDiv.id = "responsive-toolbar";    
+    // Toolbar has 2 divs, we give them CSS IDs.	
+    Tb.innerDiv.id = "responsive-toolbar";    
     Tb.outerDiv.id = "responsive-toolbar-wrapper";
 
     // Inline CSS styling for outerDiv (responsive-toolbar-wrapper)
-    Tb.outerDiv.style.width         = "100%";
-    Tb.outerDiv.style.top           = "0";
-    Tb.outerDiv.style.left          = "0";
-    Tb.outerDiv.style.position      = "fixed";	
-    Tb.outerDiv.style.height        = "20px";
-    Tb.outerDiv.style.background    = "#4f8ece";
-    Tb.outerDiv.style.borderBottom  = "1px solid black";
-    Tb.outerDiv.style.overflow      = "hidden";
+    Tb.outerDiv.style.width        = "100%";
+    Tb.outerDiv.style.top          = "0";
+    Tb.outerDiv.style.left         = "0";
+    Tb.outerDiv.style.position     = "fixed";	
+    Tb.outerDiv.style.height       = "20px";
+    Tb.outerDiv.style.background   = "#4f8ece";
+    Tb.outerDiv.style.borderBottom = "1px solid black";
+    Tb.outerDiv.style.overflow     = "hidden";
 
     // Inline CSS styling for innerDiv (responsive-toolbar)
-    Tb.innerDiv.style.height      = "20px";
-    Tb.innerDiv.style.lineHeight  = "20px";
-    Tb.innerDiv.style.color       = "#234b74";
-    Tb.innerDiv.style.fontFamily  = "sans-serif";
-    Tb.innerDiv.style.fontSize    = "12px";
-    Tb.innerDiv.style.fontWeight  = "bold";
-    Tb.innerDiv.style.textShadow  = "0px 1px 1px #acd5ff";
-    Tb.innerDiv.style.textAlign   = "center";
+    Tb.innerDiv.style.height     = "20px";
+    Tb.innerDiv.style.lineHeight = "20px";
+    Tb.innerDiv.style.color      = "#234b74";
+    Tb.innerDiv.style.fontFamily = "sans-serif";
+    Tb.innerDiv.style.fontSize   = "12px";
+    Tb.innerDiv.style.fontWeight = "bold";
+    Tb.innerDiv.style.textShadow = "0px 1px 1px #acd5ff";
+    Tb.innerDiv.style.textAlign  = "center";
+
+    return Tb;    
 }
 
-function deviceDescription(x){
-    var width = x.width;
+ResponsiveToolbar.deviceDescription = function( Tb ){
+    var width = Tb.width;
     if ( width > 0 && width <= 480 ) {
         return "Landscape phone and smaller";
     } else if ( width > 480 && width <= 767 ) {
@@ -51,35 +60,37 @@ function deviceDescription(x){
     }
 }   
 
-function removeToolBar() {
-	element = document.getElementById( "responsive-toolbar-wrap" );
+ResponsiveToolbar.removeToolBar = function() {
+	element = document.getElementById( "responsive-toolbar-wrapper" );
 	element.parentNode.removeChild( element );
 	return false;	
 }
 
-function toolbarContent() {
+ResponsiveToolbar.insertToolbar = function() {
+    var bodyTag = ResponsiveToolbar.getBodyTag();
+    bodyTag.insertBefore( ResponsiveToolbar.Instance.outerDiv, bodyTag.firstChild );
+    ResponsiveToolbar.Instance.outerDiv.appendChild( ResponsiveToolbar.Instance.innerDiv );
+}
+
+ResponsiveToolbar.toolbarContent = function() {
+    var Tb = ResponsiveToolbar.Instance;
     Tb.innerDiv.innerHTML =  "";  
     Tb.innerDiv.innerHTML += Tb.width + " x " + Tb.height + "  ";
-    Tb.innerDiv.innerHTML += deviceDescription(Tb);
+    Tb.innerDiv.innerHTML += ResponsiveToolbar.deviceDescription(Tb);
     Tb.innerDiv.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\x3Btext-shadow:none\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
 }
 
-function insertToolbar() {
-    bodyTag.insertBefore( Tb.outerDiv, bodyTag.firstChild );
-    Tb.outerDiv.appendChild( Tb.innerDiv );
-}
+ResponsiveToolbar.Instance = ResponsiveToolbar.createToolbar();
 
-function buildInfoBox() {
-    createToolbar();
-    deviceDescription( Tb );
-    toolbarContent();
-    insertToolbar();        
-}
+ResponsiveToolbar.deviceDescription(ResponsiveToolbar.Instance);
 
-buildInfoBox();
+ResponsiveToolbar.toolbarContent();
+
+ResponsiveToolbar.insertToolbar();
 
 window.onresize = function(){
+    var Tb = ResponsiveToolbar.Instance;
     Tb.width = window.innerWidth;
     Tb.height = window.innerHeight;
-    toolbarContent();
+    ResponsiveToolbar.toolbarContent();
 }
