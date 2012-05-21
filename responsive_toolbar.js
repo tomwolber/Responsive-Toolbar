@@ -77,7 +77,7 @@ ResponsiveToolbar.toolbarContent = function() {
     Tb.innerDiv.innerHTML =  "";  
     Tb.innerDiv.innerHTML += Tb.width + " x " + Tb.height + "  ";
     Tb.innerDiv.innerHTML += ResponsiveToolbar.deviceDescription(Tb);
-    Tb.innerDiv.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\x3Btext-shadow:none\" onclick=\"removeToolBar()\x3B\" > [remove]</a>";         
+    Tb.innerDiv.innerHTML += " <a href=\"#\" style=\"color:#234b74\x3Bfont-weight:normal\x3Btext-shadow:none\" onclick=\"ResponsiveToolbar.removeToolBar()\x3B\" > [remove]</a>";
 }
 
 ResponsiveToolbar.Instance = ResponsiveToolbar.createToolbar();
