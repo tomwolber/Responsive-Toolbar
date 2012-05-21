@@ -13,6 +13,7 @@ http://tommywolber.com/dev/Responsive-Toolbar/demo.html
 **Usage:**
 
 Just add the JS file to your HTML:
-    <script src="responsive_toolbar.js"></script>
-
+```html
+<script src="responsive_toolbar.js"></script>
+```
 
