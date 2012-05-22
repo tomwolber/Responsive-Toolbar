@@ -2,7 +2,8 @@
 
 Responsive Toolbar is a (currently) small piece of pure JavaScript that displays the 
 current window size, and what devices are associated with that size on an overlay on the
-top of the page.
+top of the page. Responsive Toolbar currently uses the device sizes defined in the media 
+queries found in Twitter Bootstrap. 
 
 I am open to suggestions for anything else that would be helpful.
 
