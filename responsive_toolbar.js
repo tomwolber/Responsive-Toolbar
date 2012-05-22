@@ -24,6 +24,7 @@ ResponsiveToolbar.createToolbar = function(){
 
     // Inline CSS styling for outerDiv (responsive-toolbar-wrapper)
     Tb.outerDiv.style.width        = "100%";
+    Tb.outerDiv.style.zIndex      = "9999";
     Tb.outerDiv.style.top          = "0";
     Tb.outerDiv.style.left         = "0";
     Tb.outerDiv.style.position     = "fixed";	
