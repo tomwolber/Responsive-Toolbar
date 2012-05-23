@@ -1,0 +1,18 @@
+{
+    "name": "Responsive Toolbar",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "Making designing in the browser & responsive design easier.",
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "permissions": ["tabs"],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["rt.js"]
+        }
+    ],
+    "background_page": "background.html"
+
+}
